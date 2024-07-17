@@ -44,7 +44,7 @@ module.exports = {
     },
     extend: {
       fontFamily: {
-        dm: ['var(--font-dm-sans)'],
+        dm: ['var(--font-dm)'],
       },
     },
   },
