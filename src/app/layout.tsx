@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { ReactNode } from 'react'
 import { dm_sans } from "@/app/ui/fonts"
+import Sidebar from './components/Sidebar'
 import cn from 'classnames'
 
 import '@/app/ui/global.scss'
@@ -17,8 +18,11 @@ export default function RootLayout({
     return (
       <html lang="en" className={cn(dm_sans.variable)}>
         <body>
-          <main>
-            {children}
+          <main className='w-screen min-h-screen grid grid-cols-[350px_minmax(900px,_1fr)] bg-black'>
+            <Sidebar/>
+            <div className="pt-3 pb-3 pr-3">
+              {children}
+            </div>
           </main>
         </body>
       </html>
