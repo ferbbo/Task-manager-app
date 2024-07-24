@@ -21,14 +21,14 @@ export default function Sidebar() {
   return (
     <aside
       className={cn(
-        "flex  flex-col max-w-[350px] pt-5 pb-3 px-3 overflow-hidden transition-all",
-        [collapse ? "w-[73px]" : "w-[350px]"]
+        "flex  flex-col max-w-[350px] pt-5 pb-3 px-3 overflow-hidden transition-all relative",
+        [collapse ? "w-[68px]" : "w-[350px]"]
       )}
       aria-label='Sidebar Navigation'
     >
       <button
         className={cn(
-          "bg-gray w-10 h-12 flex items-center ms-1 justify-center rounded-full transition-colors hover:bg-gray-dark"
+          "bg-gray  w-[44px] absolute h-[44px] flex items-center justify-center rounded-full transition-colors hover:bg-gray-dark"
         )}
         onClick={HandleClose}
         aria-expanded={!collapse}
@@ -67,7 +67,7 @@ export default function Sidebar() {
           </svg>
         )}
       </button>
-      <div className={cn("h-full mt-9 flex flex-col gap-2")}>
+      <div className={cn("h-full mt-[60px] flex flex-col gap-2")}>
         <ul className='p-0 gap-2 list-none'>
           {[1, 2, 3].map((el) => (
             <li
@@ -75,7 +75,7 @@ export default function Sidebar() {
                 "flex items-center gap-2 font-medium text-white-dark border-black border-2  hover:border-blue",
                 [
                   collapse
-                    ? "rounded-[50%] h-[47] w-[47] p-1"
+                    ? "rounded-[50%] h-[48px] w-[44px] p-1"
                     : "rounded-3xl h-12  p-2 px-1",
                 ]
               )}
@@ -93,12 +93,8 @@ export default function Sidebar() {
         </ul>
         <button
           className={cn(
-            "rounded-3xl flex items-center overflow-hidden gap-2 text-lg font-medium text-white-dark border-black border hover:border-blue-light",
-            [
-              collapse
-                ? "rounded-[50%] h-[40] w-[40] p-1 justify-center "
-                : "p-2",
-            ]
+            "rounded-3xl flex items-center overflow-hidden gap-2 p-1 ms-1 text-lg font-medium text-white-dark border-black border hover:border-blue-light",
+            { "rounded-[50%] h-[34px] w-[34px]": collapse }
           )}
         >
           <svg
