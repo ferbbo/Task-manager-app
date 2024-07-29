@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { ReactNode } from "react";
+import Head from "next/head";
+import ThemeProvider from "@/app/providers/ThemeProvider";
 import { dm_sans } from "@/app/ui/fonts";
 import Sidebar from "./components/Sidebar";
 import cn from "classnames";
@@ -12,12 +14,14 @@ export const metadata: Metadata = {
 };
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <html lang='en' className={cn(dm_sans.variable)}>
+    <html lang='en' className={cn(dm_sans.variable)} suppressHydrationWarning>
       <body>
-        <main className='w-screen min-h-screen flex bg-white-dark dark:bg-black'>
-          <Sidebar />
-          <div className='pt-3 pb-3 pr-3'>{children}</div>
-        </main>
+        <ThemeProvider>
+          <main className='w-screen min-h-screen flex bg-white-dark dark:bg-black'>
+            <Sidebar />
+            <div className='pt-3 pb-3 pr-3'>{children}</div>
+          </main>
+        </ThemeProvider>
       </body>
     </html>
   );

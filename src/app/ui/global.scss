@@ -3,9 +3,12 @@
 @tailwind utilities;
 
 * {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 body {
-    font-family: var(--font-dm);
+  font-family: var(--font-dm);
+}
+body:not(.body-visible) {
+  visibility: hidden;
 }

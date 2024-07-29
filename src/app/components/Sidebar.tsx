@@ -1,19 +1,15 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import { ThemeContext } from "../providers/ThemeProvider";
 import cn from "classnames";
 import IconSvg from "./IconSvg";
 
 export default function Sidebar() {
-  const [mode, setMode] = useState("light");
+  const [theme, handleTheme] = useContext(ThemeContext);
+
   const [collapse, setCollapse] = useState(false);
 
-  const handleClick = (evt) => {
-    evt.preventDefault();
-    setMode(mode === "light" ? "dark" : "light");
-    if (mode === "light") document.documentElement.classList.remove("dark");
-    if (mode === "dark") document.documentElement.classList.add("dark");
-  };
   const HandleClose = (evt) => {
     evt.preventDefault();
 
@@ -45,8 +41,8 @@ export default function Sidebar() {
           >
             <path
               d='M5 7h14M5 12h8M5 17h14'
-              stroke-width='2'
-              stroke-linecap='round'
+              strokeWidth='2'
+              strokeLinecap='round'
               className='stroke-black dark:stroke-white-dark'
             />
           </svg>
@@ -60,9 +56,9 @@ export default function Sidebar() {
           >
             <path
               d='M18 6L6 18M6 6L18 18'
-              stroke-width='2'
-              stroke-linecap='round'
-              stroke-linejoin='round'
+              strokeWidth='2'
+              strokeLinecap='round'
+              strokeLinejoin='round'
               className='stroke-black dark:stroke-white-dark'
             />
           </svg>
@@ -72,6 +68,7 @@ export default function Sidebar() {
         <ul className='p-0 gap-2 list-none'>
           {[1, 2, 3].map((el) => (
             <li
+              key={el}
               className={cn(
                 "flex items-center gap-2 font-medium text-black dark:text-white-dark border-white-dark dark:border-black border-2  hover:border-blue",
                 [
@@ -105,8 +102,8 @@ export default function Sidebar() {
             viewBox='0 0 24 24'
           >
             <path
-              fill-rule='evenodd'
-              clip-rule='evenodd'
+              fillRule='evenodd'
+              clipRule='evenodd'
               d='M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12ZM12 18C11.4477 18 11 17.5523 11 17V13H7C6.44772 13 6 12.5523 6 12C6 11.4477 6.44772 11 7 11H11V7C11 6.44772 11.4477 6 12 6C12.5523 6 13 6.44772 13 7V11H17C17.5523 11 18 11.4477 18 12C18 12.5523 17.5523 13 17 13H13V17C13 17.5523 12.5523 18 12 18Z'
               className='fill-black dark:fill-white-dark'
             />
@@ -132,7 +129,7 @@ export default function Sidebar() {
             "flex gap-2 items-center justify-center font-medium rounded-xl border-0 text-black bg-white dark:bg-black dark:text-white-dark transform duration-500",
             [
               collapse &&
-                (mode === "dark" ? "translate-x-0 " : "translate-x-10"),
+                (theme === "dark" ? "translate-x-10" : "translate-x-0"),
             ],
             [
               collapse
@@ -140,7 +137,7 @@ export default function Sidebar() {
                 : "p-3 w-6/12 ",
             ]
           )}
-          onClick={handleClick}
+          onClick={() => handleTheme("dark")}
           aria-label='Switch to dark mode'
         >
           <svg
@@ -162,7 +159,7 @@ export default function Sidebar() {
             "flex gap-2 items-center justify-center font-medium rounded-xl border-0 text-black bg-white dark:bg-gray dark:text-white-dark transform duration-500",
             [
               collapse &&
-                (mode === "light" ? "translate-x-0" : "-translate-x-10 "),
+                (theme === "light" ? "-translate-x-10" : "translate-x-0"),
             ],
             [
               collapse
@@ -170,7 +167,7 @@ export default function Sidebar() {
                 : "p-3 w-6/12 bg-white-dark",
             ]
           )}
-          onClick={handleClick}
+          onClick={() => handleTheme("light")}
           aria-label='Switch to light mode'
         >
           <svg
@@ -188,8 +185,8 @@ export default function Sidebar() {
             />
             <path
               d='M12 5V3M12 21V19M16.95 7.05l1.414-1.414M5.636 18.364l1.414-1.414M19 12h2M3 12h2M16.95 16.95l1.414 1.414M5.636 5.636l1.414 1.414'
-              stroke-width='2'
-              stroke-linecap='round'
+              strokeWidth='2'
+              strokeLinecap='round'
               className=' stroke-black dark:stroke-white-dark'
             />
           </svg>
