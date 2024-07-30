@@ -12,6 +12,7 @@ module.exports = {
   ],
   theme: {
     fontSize: {
+      "min-sm": "0.5rem",
       sm: "0.8rem",
       md: "0.75rem",
       lg: "0.875rem",
@@ -43,6 +44,7 @@ module.exports = {
       "gray-light": "#7E878D",
       blue: "#3662E3",
       "blue-light": "#DEE9FC",
+      red: "#AA2E26",
     },
     extend: {
       fontFamily: {
