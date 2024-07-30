@@ -1,18 +1,18 @@
 "use client";
 
-import React, { useState, useContext } from "react";
-import { ThemeContext } from "../providers/ThemeProvider";
+import React, { useContext } from "react";
 import cn from "classnames";
-import IconSvg from "./IconSvg";
+
+import { CollapseContext } from "@/providers/CollapseProvider";
+import { ThemeContext } from "@/providers/ThemeProvider";
+import IconSvg from "@/components/IconSvg";
 
 export default function Sidebar() {
   const [theme, handleTheme] = useContext(ThemeContext);
-
-  const [collapse, setCollapse] = useState(false);
+  const [collapse, setCollapse] = useContext(CollapseContext);
 
   const HandleClose = (evt) => {
     evt.preventDefault();
-
     setCollapse(!collapse);
   };
   return (

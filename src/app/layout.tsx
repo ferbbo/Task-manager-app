@@ -1,11 +1,13 @@
-import type { Metadata } from "next";
 import { ReactNode } from "react";
-import Head from "next/head";
-import ThemeProvider from "@/app/providers/ThemeProvider";
-import { dm_sans } from "@/app/ui/fonts";
-import Sidebar from "./components/Sidebar";
 import cn from "classnames";
 
+import ThemeProvider from "@/providers/ThemeProvider";
+import CollapseProvider from "@/providers/CollapseProvider";
+import Sidebar from "@/components/Sidebar";
+
+import type { Metadata } from "next";
+
+import { dm_sans } from "@/app/ui/fonts";
 import "@/app/ui/global.scss";
 
 export const metadata: Metadata = {
@@ -18,8 +20,10 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       <body>
         <ThemeProvider>
           <main className='w-screen min-h-screen flex bg-white-dark dark:bg-black'>
-            <Sidebar />
-            <div className='pt-3 pb-3 pr-3'>{children}</div>
+            <CollapseProvider>
+              <Sidebar />
+              {children}
+            </CollapseProvider>
           </main>
         </ThemeProvider>
       </body>
