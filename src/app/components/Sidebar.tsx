@@ -8,6 +8,7 @@ import { ThemeContext } from "@/providers/ThemeProvider";
 import IconSvg from "@/components/IconSvg";
 
 export default function Sidebar() {
+
   const [theme, handleTheme] = useContext(ThemeContext);
   const [collapse, setCollapse] = useContext(CollapseContext);
 
@@ -15,6 +16,7 @@ export default function Sidebar() {
     evt.preventDefault();
     setCollapse(!collapse);
   };
+  
   return (
     <aside
       className={cn(
