@@ -1,19 +1,18 @@
 "use client";
-
-import React, { useContext } from "react";
 import cn from "classnames";
 
-import { CollapseContext } from "@/providers/CollapseProvider";
-import { ThemeContext } from "@/providers/ThemeProvider";
+import { useCollapse } from "@/providers/CollapseProvider";
 import IconSvg from "@/components/IconSvg";
+import ThemeButton from "@/components/ThemeButton";
+
+type HandleClose = (evt: React.MouseEvent<HTMLButtonElement>) => void;
 
 export default function Sidebar() {
-  const [theme, handleTheme] = useContext(ThemeContext);
-  const [collapse, setCollapse] = useContext(CollapseContext);
+  const { collapse, handleCollapse } = useCollapse();
 
-  const HandleClose = (evt) => {
+  const handleClose: HandleClose = (evt) => {
     evt.preventDefault();
-    setCollapse(!collapse);
+    handleCollapse();
   };
   return (
     <aside
@@ -27,7 +26,7 @@ export default function Sidebar() {
         className={cn(
           "bg-purple-light dark:bg-gray  w-[44px] absolute h-[44px] flex items-center justify-center rounded-full transition-colors   dark:hover:bg-gray-dark"
         )}
-        onClick={HandleClose}
+        onClick={handleClose}
         aria-expanded={!collapse}
         aria-label={collapse ? "Expand Sidebar" : "Collapse Sidebar"}
       >
@@ -117,82 +116,7 @@ export default function Sidebar() {
           </span>
         </button>
       </div>
-      <div
-        className={cn("relative  flex justify-center gap-3 overflow-hidden", [
-          collapse
-            ? "w-10 h-[46px]"
-            : "bg-purple-light dark:bg-gray rounded-xl p-1",
-        ])}
-      >
-        <button
-          className={cn(
-            "flex gap-2 items-center justify-center font-medium rounded-xl border-0 text-black bg-white dark:bg-black dark:text-white-dark transform duration-500",
-            [
-              collapse &&
-                (theme === "dark" ? "translate-x-10" : "translate-x-0"),
-            ],
-            [
-              collapse
-                ? "absolute rounded-[50%] w-[40] h-[40] p-1 bg-purple-light"
-                : "p-3 w-6/12 ",
-            ]
-          )}
-          onClick={() => handleTheme("dark")}
-          aria-label='Switch to dark mode'
-        >
-          <svg
-            xmlns='http://www.w3.org/2000/svg'
-            width='24'
-            height='24'
-            viewBox='0 0 24 24'
-            className='fill-black dark:fill-white-dark'
-          >
-            <path
-              d='M15 4c.292 0 .438 0 .578.042.614.184.9.89.586 1.449-.072.128-.29.339-.726.76C13.935 7.704 13 9.743 13 12s.935 4.296 2.439 5.751c.436.422.654.633.726.761.314.558.028 1.264-.586 1.448-.14.042-.286.042-.578.042v0C10.582 20 7 16.418 7 12S10.582 4 15 4v0z'
-              className='fill-black dark:fill-white-dark'
-            />
-          </svg>
-          <span className={cn({ hidden: collapse })}>Dark</span>
-        </button>
-        <button
-          className={cn(
-            "flex gap-2 items-center justify-center font-medium rounded-xl border-0 text-black bg-white dark:bg-gray dark:text-white-dark transform duration-500",
-            [
-              collapse &&
-                (theme === "light" ? "-translate-x-10" : "translate-x-0"),
-            ],
-            [
-              collapse
-                ? "absolute rounded-[50%] w-[40] h-[40] p-1"
-                : "p-3 w-6/12 bg-white-dark",
-            ]
-          )}
-          onClick={() => handleTheme("light")}
-          aria-label='Switch to light mode'
-        >
-          <svg
-            xmlns='http://www.w3.org/2000/svg'
-            width='25'
-            height='25'
-            viewBox='0 0 25 25'
-            className='fill-black dark:fill-white-dark'
-          >
-            <circle
-              cx='12'
-              cy='12'
-              r='4'
-              className='fill-black dark:fill-white-dark'
-            />
-            <path
-              d='M12 5V3M12 21V19M16.95 7.05l1.414-1.414M5.636 18.364l1.414-1.414M19 12h2M3 12h2M16.95 16.95l1.414 1.414M5.636 5.636l1.414 1.414'
-              strokeWidth='2'
-              strokeLinecap='round'
-              className=' stroke-black dark:stroke-white-dark'
-            />
-          </svg>
-          <span className={cn({ hidden: collapse })}>Light</span>
-        </button>
-      </div>
+      <ThemeButton />
     </aside>
   );
 }

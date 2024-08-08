@@ -2,13 +2,15 @@ import React from "react";
 import Image from "next/image";
 import cn from "classnames";
 import { Tag } from "@/components/Tag";
+import type { Category } from "@/app/types";
 
-interface PropsTask {
+interface TaskProps {
   image: string;
   title: string;
+  categories: Category[];
 }
 
-const Task = ({ image, title }: PropsTask) => {
+const Task = ({ image, title, categories }: TaskProps) => {
   return (
     <article
       className={cn(
@@ -26,8 +28,8 @@ const Task = ({ image, title }: PropsTask) => {
       </figure>
       <p className='text-lg text-black dark:text-white-dark'>{title}</p>
       <div className='flex items-center gap-2'>
-        {["technical", "design"].map((el) => (
-          <Tag key={el} type={el}></Tag>
+        {categories.map((el) => (
+          <Tag key={el} category={el}></Tag>
         ))}
       </div>
     </article>
