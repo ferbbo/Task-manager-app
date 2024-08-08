@@ -1,15 +1,25 @@
 "use client";
 
-import { createContext, useState } from "react";
+import { createContext, useContext, useState } from "react";
 
-export const CollapseContext = createContext([]);
+type Collapse = boolean;
+type HandleCollapse = () => void;
+interface CollapseContextType {
+  collapse: Collapse;
+  handleCollapse: HandleCollapse;
+}
+const CollapseContext = createContext<CollapseContextType | null>(null);
+export const useCollpase = () => useContext(CollapseContext);
 
 import React from "react";
 
 function CollapseProvider({ children }) {
-  const [collapse, setCollapse] = useState(false);
+  const [collapse, setCollapse] = useState<Collapse>(false);
+  const handleCollapse: HandleCollapse = () => {
+    setCollapse((prevCollapse) => !prevCollapse);
+  };
   return (
-    <CollapseContext.Provider value={[collapse, setCollapse]}>
+    <CollapseContext.Provider value={{ collapse, handleCollapse }}>
       {children}
     </CollapseContext.Provider>
   );
