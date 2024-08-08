@@ -8,21 +8,16 @@ function ThemeButton() {
   const { theme, handleTheme } = useTheme();
   return (
     <div
-      className={cn("relative  flex justify-center gap-3 overflow-hidden", [
-        collapse
-          ? "w-10 h-[46px]"
-          : "bg-purple-light dark:bg-gray rounded-xl p-1",
-      ])}
+      className={cn(
+        "relative  flex justify-center items-center gap-3 overflow-hidden bg-purple-light dark:bg-gray rounded-xl py-2 p-1",
+        { "w-10 h-[46px]": collapse }
+      )}
     >
       <button
         className={cn(
-          "flex gap-2 items-center justify-center font-medium rounded-xl border-0 text-black bg-white dark:bg-black dark:text-white-dark transform duration-500",
+          "flex gap-2 items-center justify-center font-medium rounded-lg border-0 text-black bg-white dark:bg-black dark:text-white-dark transform duration-500",
           [collapse && (theme === "dark" ? "translate-x-10" : "translate-x-0")],
-          [
-            collapse
-              ? "absolute rounded-[50%] w-[40] h-[40] p-1 bg-purple-light"
-              : "p-3 w-6/12 ",
-          ]
+          [collapse ? "absolute rounded-[50%] p-1 " : "p-3 w-6/12 "]
         )}
         onClick={() => handleTheme("dark")}
         aria-label='Switch to dark mode'

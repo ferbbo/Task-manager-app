@@ -9,15 +9,15 @@ type Task = {
 };
 
 interface TaskColumnProps {
-  stateOfBoard: StatesOfBoard;
+  board: StatesOfBoard;
   tasks: Array<Task>;
 }
 
-const TaskColumn = ({ stateOfBoard = "backlog", tasks }: TaskColumnProps) => {
+const TaskColumn = ({ board = "backlog", tasks }: TaskColumnProps) => {
   return (
     <section className='flex flex-col gap-5'>
       <header className='flex items-center gap-2 w-48'>
-        <DotTitle statesOfBoard={stateOfBoard} count={2} />
+        <DotTitle statesOfBoard={board} count={2} />
       </header>
       {tasks.map((el) => (
         <Task
