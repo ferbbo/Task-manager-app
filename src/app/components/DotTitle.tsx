@@ -1,14 +1,36 @@
 import React from "react";
 import cn from "classnames";
+import type { StatesOfBoard } from "@/app/types";
+interface DotTitleProps {
+  statesOfBoard: StatesOfBoard;
+  count: number;
+}
 
-const DotTitle = ({ type, count }) => {
-  const dotByType = {
-    backlog: {
-      label: "Backlog",
-      style: "bg-blue ",
-    },
-  };
-  const { label, style } = dotByType[type] || {
+type DotState = {
+  label: string;
+  style: string;
+};
+
+const dotByState: Record<StatesOfBoard, DotState> = {
+  backlog: {
+    label: "Backlog",
+    style: "bg-blue ",
+  },
+  inProgress: {
+    label: "In Progress",
+    style: "bg-yellow",
+  },
+  inReview: {
+    label: "In Review",
+    style: "bg-purple",
+  },
+  completed: {
+    label: "Done",
+    style: "bg-green",
+  },
+};
+const DotTitle = ({ statesOfBoard, count }: DotTitleProps) => {
+  const { label, style } = dotByState[statesOfBoard] || {
     label: "-- --",
     style: "bg-white",
   };
