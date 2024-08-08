@@ -9,7 +9,7 @@ interface CollapseContextType {
   handleCollapse: HandleCollapse;
 }
 const CollapseContext = createContext<CollapseContextType | null>(null);
-export const useCollpase = () => useContext(CollapseContext);
+export const useCollapse = () => useContext(CollapseContext);
 
 import React from "react";
 
