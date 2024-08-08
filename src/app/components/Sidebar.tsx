@@ -1,22 +1,26 @@
 "use client";
 
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import cn from "classnames";
 
 import { CollapseContext } from "@/providers/CollapseProvider";
 import { ThemeContext } from "@/providers/ThemeProvider";
 import IconSvg from "@/components/IconSvg";
+import Modal from "@/components/Modal";
 
 export default function Sidebar() {
-
   const [theme, handleTheme] = useContext(ThemeContext);
   const [collapse, setCollapse] = useContext(CollapseContext);
+  const [openModal, setOpenModal] = useState(true);
 
   const HandleClose = (evt) => {
     evt.preventDefault();
     setCollapse(!collapse);
   };
-  
+  const handleModal = (open) => {
+    setOpenModal(open);
+  };
+
   return (
     <aside
       className={cn(
@@ -96,6 +100,7 @@ export default function Sidebar() {
             "rounded-3xl flex items-center overflow-hidden gap-2 p-1 ms-1 text-lg font-medium border-white-dark hover:border-blue dark:text-white-dark  dark:border-black border dark:hover:border-blue-light",
             { "rounded-[50%] h-[34px] w-[34px]": collapse }
           )}
+          onClick={() => handleModal(true)}
         >
           <svg
             xmlns='http://www.w3.org/2000/svg'
@@ -195,6 +200,9 @@ export default function Sidebar() {
           <span className={cn({ hidden: collapse })}>Light</span>
         </button>
       </div>
+      <Modal type={"board"} open={openModal} onOpen={handleModal}>
+        MODAL
+      </Modal>
     </aside>
   );
 }
