@@ -1,27 +1,77 @@
 "use client";
 
-import React from "react";
+import React, { useRef, useEffect } from "react";
 import cn from "classnames";
 
-function Modal({ children, type, open, onOpen }) {
-  const title = {
-    board: "New board",
-    task: "Task details",
-  };
+interface ModalProps {
+  children: React.ReactNode;
+  typeModal: string;
+  isOpen: boolean;
+  closeOpen: () => void;
+}
+type LabelModal = "task" | "board";
 
+const labelByType: Record<LabelModal, string> = {
+  task: "Task details",
+  board: "New board",
+};
+
+function Modal({ children, typeModal, isOpen, closeOpen }: ModalProps) {
+  const modalRef = useRef(null);
+  const wrapperRef = useRef(null);
+  useEffect(() => {
+    const $node = modalRef.current;
+    const $wrapperNode = wrapperRef.current;
+    const handleClick = (evt: MouseEvent) => {
+      if (evt.target === $wrapperNode) {
+        closeOpen();
+      }
+    };
+
+    const handleAnimationStart = (evt: AnimationEvent) => {
+      if (evt.animationName === "modalIn") {
+        $wrapperNode.classList.remove("hidden");
+      }
+    };
+
+    const handleAnimationEnd = (evt: AnimationEvent) => {
+      if (evt.animationName === "modalOut") {
+        $wrapperNode.classList.add("hidden");
+      }
+    };
+    if ($node && $wrapperNode) {
+      $wrapperNode.addEventListener("click", handleClick);
+      $node.addEventListener("animationstart", handleAnimationStart);
+      $node.addEventListener("animationend", handleAnimationEnd);
+    }
+    return () => {
+      $wrapperNode.removeEventListener("click", handleClick);
+      $node.removeEventListener("animationstart", handleAnimationStart);
+      $node.removeEventListener("animationend", handleAnimationEnd);
+    };
+  }, [closeOpen]);
   return (
     <div
       className={cn(
-        "w-screen h-screen transition-opacity grid place-items-center",
-        open ? "fixed top-0 left-0 right-0 bg-gray-opacity z-10" : "z-0 hidden"
+        "fixed top-0 bottom-0 left-0 right-0 z-10 bg-blue-light-opacity dark:bg-gray-opacity transition-opacity duration-[500ms] place-items-center grid",
+        isOpen ? "opacity-100 " : "opacity-0 delay-500"
       )}
+      ref={wrapperRef}
     >
-      <div className='rounded-xl bg-black p-4 shadow-md  w-3/5'>
+      <div
+        className={cn(
+          "rounded-xl bg-white dark:bg-gray-dark p-8 shadow-md w-full md:w-[40%]",
+          isOpen ? "animate-modal-in" : "animate-modal-out"
+        )}
+        ref={modalRef}
+      >
         <div className='flex justify-between items-center mb-5'>
-          <p className='text-xl text-white-dark'>{title[type]}</p>
+          <p className='text-xl text-black dark:text-white-dark'>
+            {labelByType[typeModal]}
+          </p>
           <button
             className='bg-transparent border-0'
-            onClick={() => onOpen(false)}
+            onClick={() => closeOpen()}
           >
             <svg
               xmlns='http://www.w3.org/2000/svg'

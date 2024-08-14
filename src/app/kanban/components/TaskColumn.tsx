@@ -1,5 +1,5 @@
 import DotTitle from "@/components/DotTitle";
-import Task from "@/components/Task";
+import Task from "@/kanban/components/Task";
 import type { StatesOfBoard } from "@/app/types";
 
 type Task = {

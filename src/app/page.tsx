@@ -1,5 +1,5 @@
 import ClientWrapper from "@/components/ClientWrapper";
-import TaskColumn from "@/components/TaskColumn";
+import TaskColumn from "@/kanban/components/TaskColumn";
 
 export default function Page() {
   return (

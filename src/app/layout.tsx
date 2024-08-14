@@ -3,7 +3,7 @@ import cn from "classnames";
 
 import ThemeProvider from "@/providers/ThemeProvider";
 import CollapseProvider from "@/providers/CollapseProvider";
-import Sidebar from "@/components/Sidebar";
+import Sidebar from "@/sidebar/components/Sidebar";
 
 import type { Metadata } from "next";
 

@@ -4,7 +4,9 @@
     "paths": {
       "@/*": ["./*"],
       "@/components/*": ["./app/components/*"],
-      "@/providers/*": ["./app/providers/*"]
+      "@/providers/*": ["./app/providers/*"],
+      "@/sidebar/*": ["./app/sidebar/*"],
+      "@/kanban/*": ["./app/kanban/*"]
     },
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,

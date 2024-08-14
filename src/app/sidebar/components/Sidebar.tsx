@@ -1,18 +1,25 @@
 "use client";
-import cn from "classnames";
 
+import { useState } from "react";
 import { useCollapse } from "@/providers/CollapseProvider";
+import cn from "classnames";
 import IconSvg from "@/components/IconSvg";
-import ThemeButton from "@/components/ThemeButton";
+import ThemeButton from "@/sidebar/components/ThemeButton";
+import SidebarModal from "@/sidebar/components/SidebarModal";
 
-type HandleClose = (evt: React.MouseEvent<HTMLButtonElement>) => void;
+type HandleClick = (evt: React.MouseEvent<HTMLButtonElement>) => void;
 
 export default function Sidebar() {
   const { collapse, handleCollapse } = useCollapse();
+  const [openModal, setOpenModal] = useState<boolean | null>(false);
 
-  const handleClose: HandleClose = (evt) => {
+  const handleClose: HandleClick = (evt) => {
     evt.preventDefault();
     handleCollapse();
+  };
+
+  const handleBoardModal = () => {
+    setOpenModal((state) => !state);
   };
 
   return (
@@ -25,7 +32,8 @@ export default function Sidebar() {
     >
       <button
         className={cn(
-          "bg-purple-light dark:bg-gray  w-[44px] absolute h-[44px] flex items-center justify-center rounded-full transition-colors   dark:hover:bg-gray-dark"
+          `w-[44px] absolute h-[44px] flex items-center justify-center rounded-full transition-colors 
+          bg-purple-light dark:bg-gray dark:hover:bg-gray-dark`
         )}
         onClick={handleClose}
         aria-expanded={!collapse}
@@ -94,6 +102,7 @@ export default function Sidebar() {
             "rounded-3xl flex items-center overflow-hidden gap-2 p-1 ms-1 text-lg font-medium border-white-dark hover:border-blue dark:text-white-dark  dark:border-black border dark:hover:border-blue-light",
             { "rounded-[50%] h-[34px] w-[34px]": collapse }
           )}
+          onClick={handleBoardModal}
         >
           <svg
             xmlns='http://www.w3.org/2000/svg'
@@ -118,6 +127,7 @@ export default function Sidebar() {
         </button>
       </div>
       <ThemeButton />
+      <SidebarModal isOpen={openModal} closeOpen={handleBoardModal} />
     </aside>
   );
 }

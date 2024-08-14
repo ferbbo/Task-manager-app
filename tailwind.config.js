@@ -31,6 +31,7 @@ module.exports = {
     },
     colors: {
       "white-dark": "#FEF7EE",
+      white: "#FFFF",
       beige: "#FEF7EE",
       black: "#191B1F",
       "purple-light": "#DEE9FC",
@@ -43,7 +44,9 @@ module.exports = {
       gray: "#3A3E44",
       "gray-light": "#7E878D",
       "gray-opacity": "rgba(25, 27, 31, .9)",
+      "blue-light-opacity": "rgba(222, 233, 252, .9)",
       blue: "#3662E3",
+      "blue-dark": "#1a3fac",
       "blue-light": "#DEE9FC",
       red: "#AA2E26",
       purple: "#B787F5",
@@ -51,6 +54,37 @@ module.exports = {
     extend: {
       fontFamily: {
         dm: ["var(--font-dm)"],
+      },
+      borderColor: ["valid", "invalid"],
+      textColor: ["invalid"],
+      animation: {
+        "modal-in": ".5s ease forwards modalIn",
+        "modal-out": ".5s ease forwards modalOut",
+      },
+      keyframes: {
+        modalIn: {
+          "0%": {
+            opacity: 0,
+          },
+          "15%": {
+            transform: "translateY(3rem) skew(5deg)",
+          },
+          "60%": { transform: "translateY(-3rem) skew(0)" },
+          "100%": {
+            transform: "translate(0) ",
+            opacity: 1,
+          },
+        },
+        modalOut: {
+          "0%": {
+            transform: "translate(0) rotateX(0)",
+            opacity: 1,
+          },
+          "100%": {
+            opacity: 0,
+            transform: "translateY(-3rem)",
+          },
+        },
       },
     },
   },
