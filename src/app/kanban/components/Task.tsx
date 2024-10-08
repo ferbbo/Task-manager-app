@@ -1,7 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import cn from "classnames";
-import { Tag } from "@/components/Tag";
+import Tag from "@/components/Tag";
 import type { Category } from "@/app/types";
 
 interface TaskProps {
@@ -14,7 +14,7 @@ const Task = ({ image, title, categories }: TaskProps) => {
   return (
     <article
       className={cn(
-        "flex flex-col gap-3 rounded-xl p-3 bg-white-dark text-black dark:bg-black dark:text-white-dark"
+        "flex flex-col gap-3 rounded-xl p-3 bg-white-dark text-black shadow-lg dark:bg-black dark:text-white-dark dark:shadow-lg"
       )}
     >
       <figure className='rounded-lg aspect-[16/5] overflow-hidden w-full relative object-cover'>

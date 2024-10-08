@@ -4,13 +4,13 @@ import Modal from "@/app/components/Modal";
 import SaveButton from "@/components/SaveButton";
 import CancelButton from "@/app/components/CancelButton";
 
-interface BoardModalProps {
+interface SidebarModalProps {
   isOpen: boolean;
   closeOpen: () => void;
 }
 const COUNT_ICONS = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13];
 
-function SidebarModal({ isOpen, closeOpen }: BoardModalProps) {
+function SidebarModal({ isOpen, closeOpen }: SidebarModalProps) {
   return (
     <Modal typeModal='board' isOpen={isOpen} closeOpen={closeOpen}>
       <form action='#'>

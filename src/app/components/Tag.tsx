@@ -6,12 +6,12 @@ interface TagProps {
   category: Category;
 }
 
-type TagCategory = {
+type Label = {
   label: string;
   style: string;
 };
 
-const tagByCategory: Record<Category, TagCategory> = {
+export const labelByCategory: Record<Category, Label> = {
   concept: {
     label: "Concept",
     style: "bg-pink text-red",
@@ -29,8 +29,8 @@ const tagByCategory: Record<Category, TagCategory> = {
     style: "bg-green-light text-green",
   },
 };
-export const Tag = ({ category }: TagProps) => {
-  const { label, style } = tagByCategory[category] || {
+const Tag = ({ category }: TagProps) => {
+  const { label, style } = labelByCategory[category] || {
     label: "Concept",
     style: "bg-pink text-red",
   };
@@ -40,3 +40,5 @@ export const Tag = ({ category }: TagProps) => {
     </div>
   );
 };
+
+export default React.memo(Tag);

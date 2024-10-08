@@ -1,6 +1,10 @@
-import DotTitle from "@/components/DotTitle";
+"use client";
+
+import { useState } from "react";
+import Status from "@/components/Status";
 import Task from "@/kanban/components/Task";
-import type { StatesOfBoard } from "@/app/types";
+import TaskModal from "@/kanban/components/TaskModal";
+import type { StatusLabel } from "@/app/types";
 
 type Task = {
   id: number | string;
@@ -9,15 +13,21 @@ type Task = {
 };
 
 interface TaskColumnProps {
-  board: StatesOfBoard;
+  board: StatusLabel;
   tasks: Array<Task>;
 }
 
 const TaskColumn = ({ board = "backlog", tasks }: TaskColumnProps) => {
+  const [openModal, setOpenModal] = useState<boolean | null>(false);
+
+  const handleBoardModal = () => {
+    setOpenModal((state) => !state);
+  };
+
   return (
     <section className='flex flex-col gap-5'>
       <header className='flex items-center gap-2 w-48'>
-        <DotTitle statesOfBoard={board} count={2} />
+        <Status status={board} count={2} />
       </header>
       {tasks.map((el) => (
         <Task
@@ -27,6 +37,20 @@ const TaskColumn = ({ board = "backlog", tasks }: TaskColumnProps) => {
           categories={["technical", "design"]}
         />
       ))}
+      <button
+        className='rounded-2xl border-0 bg-blue p-4 text-white outline-none hover:bg-blue-dark transition-colors'
+        onClick={() => setOpenModal(true)}
+      >
+        Add new task card
+      </button>
+      {board === "backlog" && (
+        <TaskModal
+          isOpen={openModal}
+          closeOpen={handleBoardModal}
+          name='name'
+          image='/images/placeholder.jpg'
+        />
+      )}
     </section>
   );
 };

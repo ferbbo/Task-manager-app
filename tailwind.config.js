@@ -1,7 +1,8 @@
+const { transform } = require("typescript");
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   darkMode: "class",
-  purge: ["./src/**/*.tsx"],
   content: [
     "./app/**/*.{js,ts,jsx,tsx,mdx}", // Note the addition of the `app` directory.
     "./pages/**/*.{js,ts,jsx,tsx,mdx}",
@@ -60,6 +61,8 @@ module.exports = {
       animation: {
         "modal-in": ".5s ease forwards modalIn",
         "modal-out": ".5s ease forwards modalOut",
+        "options-open": ".2s ease forwards optionsOpen",
+        "tag-in": ".4s ease-in-out forwards tagIn",
       },
       keyframes: {
         modalIn: {
@@ -83,6 +86,32 @@ module.exports = {
           "100%": {
             opacity: 0,
             transform: "translateY(-3rem)",
+          },
+        },
+        optionsOpen: {
+          "0%": {
+            opacity: 0,
+            transform: "scale(0.9)",
+          },
+          "100%": {
+            opacity: 1,
+            transform: "scale(1)",
+          },
+        },
+        tagIn: {
+          "0%": {
+            opacity: 0,
+            transform: "translateY(0)",
+          },
+          "50%": {
+            opacity: 1,
+            transform: "translateY(-.5rem)",
+          },
+          "90%": {
+            transform: "translateY(.1rem)",
+          },
+          "100%": {
+            transform: "translateY(0)",
           },
         },
       },

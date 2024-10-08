@@ -53,7 +53,7 @@ function Modal({ children, typeModal, isOpen, closeOpen }: ModalProps) {
   return (
     <div
       className={cn(
-        "fixed top-0 bottom-0 left-0 right-0 z-10 bg-blue-light-opacity dark:bg-gray-opacity transition-opacity duration-[500ms] place-items-center grid",
+        "fixed top-0 bottom-0 left-0 right-0 z-10 bg-gray-opacity transition-opacity duration-[500ms] place-items-center grid",
         isOpen ? "opacity-100 " : "opacity-0 delay-500"
       )}
       ref={wrapperRef}
@@ -66,11 +66,11 @@ function Modal({ children, typeModal, isOpen, closeOpen }: ModalProps) {
         ref={modalRef}
       >
         <div className='flex justify-between items-center mb-5'>
-          <p className='text-xl text-black dark:text-white-dark'>
+          <p className='text-xl text-blue dark:text-white-dark'>
             {labelByType[typeModal]}
           </p>
           <button
-            className='bg-transparent border-0'
+            className='hover:bg-blue-light-opacity dark:hover:bg-gray-light dark: p-2 transition-colors delay-75 border-0 rounded-full'
             onClick={() => closeOpen()}
           >
             <svg
@@ -86,7 +86,7 @@ function Modal({ children, typeModal, isOpen, closeOpen }: ModalProps) {
                   strokeWidth='2'
                   strokeLinecap='round'
                   strokeLinejoin='round'
-                  className='stroke-white-dark'
+                  className='stroke-blue dark:stroke-white-dark'
                 />
               </g>
             </svg>
