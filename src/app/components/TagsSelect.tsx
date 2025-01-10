@@ -1,12 +1,6 @@
 "use client";
 
-import React, {
-  useState,
-  useRef,
-  useEffect,
-  useCallback,
-  useMemo,
-} from "react";
+import React, { useState, useRef, useEffect } from "react";
 import cn from "classnames";
 import type { Category } from "@/app/types";
 import { labelByCategory } from "@/components/Tag";
@@ -52,7 +46,7 @@ const TagsSelect: React.FC = () => {
           type='button'
           aria-expanded={isOpenList}
           className='border-2 rounded-xl p-2 text-md w-full text-left text-gray-light min-h-11 flex items-center gap-2
-            dark:border-gray-light dark:bg-gray-dark dark:focus:bg-gray dark:focus:border-white-dark text-ellipsis'
+            dark:border-gray-light dark:bg-gray-dark dark:focus:bg-gray dark:focus:border-blue text-ellipsis'
           onClick={() => setIsOpenList((prev) => !prev)}
         >
           {tagList.length
@@ -66,7 +60,7 @@ const TagsSelect: React.FC = () => {
         <ul
           role='listbox'
           className={cn(
-            "list-none p-1 rounded-xl bg-white dark:bg-black shadow-lg absolute z-10 w-full max-h-52 overflow-auto",
+            "list-none p-1 px-0 rounded-xl bg-white dark:bg-black shadow-lg absolute mt-2 z-10 w-full max-h-52 overflow-auto",
             [isOpenList ? "animate-options-open" : "hidden"]
           )}
         >
@@ -74,7 +68,7 @@ const TagsSelect: React.FC = () => {
             <li
               key={item}
               className={cn(
-                "px-2 py-1 hover:bg-blue rounded-lg cursor-pointer",
+                "px-2 py-1 hover:opacity-90 rounded-lg cursor-pointer",
                 {
                   "opacity-50": isSelectedBy(tagList, item),
                 }
@@ -84,7 +78,7 @@ const TagsSelect: React.FC = () => {
                 setIsOpenList(false);
               }}
             >
-              <Tag category={item} />
+              <Tag category={item} size="large" />
             </li>
           ))}
         </ul>

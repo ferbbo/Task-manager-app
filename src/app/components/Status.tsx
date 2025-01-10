@@ -35,14 +35,13 @@ const Status = ({ status, size, count = 0 }: StatusProps) => {
     label: "",
     style: "",
   };
-  console.log({status})
   return (
     <div className='flex items-center gap-2 w-fit'>
       <span className={cn("w-2 h-2 rounded-[50%]", style)}></span>
-      <p className={cn("text-base", { "text-lg": size === "small" })}>
+      <p className="text-lg text-black dark:text-white">
         {label}
         {count !== 0 && (
-          <span className='text-base text-black dark:text-white-dark ms-1'>
+          <span className='text-lg text-black dark:text-white ms-1'>
             ({count})
           </span>
         )}

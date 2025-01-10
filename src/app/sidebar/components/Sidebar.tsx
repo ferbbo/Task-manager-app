@@ -25,8 +25,8 @@ export default function Sidebar() {
   return (
     <aside
       className={cn(
-        "flex  flex-col max-w-[350px] pt-5 pb-3 px-3 overflow-hidden transition-all relative",
-        [collapse ? "w-[68px]" : "w-[350px]"]
+        "flex  flex-col max-w-[304px] pt-5 pb-3 px-3 overflow-hidden transition-all relative",
+        [collapse ? "w-[68px]" : "w-[304px]"]
       )}
       aria-label='Sidebar Navigation'
     >
@@ -88,7 +88,7 @@ export default function Sidebar() {
             >
               <IconSvg id={el} />
               <span
-                className={cn("text-nowrap overflow-hidden text-ellipsis", {
+                className={cn("text-nowrap overflow-hidden text-ellipsis text-lg font-bold", {
                   hidden: collapse,
                 })}
               >

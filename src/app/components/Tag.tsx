@@ -4,6 +4,7 @@ import type { Category } from "@/app/types";
 
 interface TagProps {
   category: Category;
+  size?: "large"
 }
 
 type Label = {
@@ -15,6 +16,7 @@ export const labelByCategory: Record<Category, Label> = {
   concept: {
     label: "Concept",
     style: "bg-pink text-red",
+
   },
   technical: {
     label: "Technical",
@@ -29,13 +31,13 @@ export const labelByCategory: Record<Category, Label> = {
     style: "bg-green-light text-green",
   },
 };
-const Tag = ({ category }: TagProps) => {
+const Tag = ({ category, size }: TagProps) => {
   const { label, style } = labelByCategory[category] || {
     label: "Concept",
     style: "bg-pink text-red",
   };
   return (
-    <div className={cn("rounded-md p-1 text-min-sm tracking-wider", [style])}>
+    <div className={cn("rounded-md py-0.5 px-2 tracking-wider", [style, size == 'large' ? "text-md py-1 font-semibold" : "text-min-sm" ], )}>
       {label}
     </div>
   );

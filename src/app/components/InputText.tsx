@@ -1,7 +1,15 @@
-import React, { Fragment } from "react";
+import React from "react";
 
-function InputText({ label }) {
-  const idFromLabel = label.toLowerCase().split(/[/\s]/).join("-");
+interface InputTextProps {
+  label: string;
+  value: string;
+  onInput: (value: EventTarget) => void;
+}
+const idFromLabelFormat = (label) =>
+  label.toLowerCase().split(/[/\s]/).join("-");
+
+function InputText({ label, value, onInput }: InputTextProps) {
+  const idFromLabel = idFromLabelFormat(label);
   return (
     <div>
       <label
@@ -14,6 +22,7 @@ function InputText({ label }) {
         type='text'
         name={label}
         id={`input-${idFromLabel}`}
+        value={value}
         required
         pattern='[Aa-zZ0-9áéíóú.,\-\s]+'
         placeholder='e.g default board'
@@ -21,6 +30,7 @@ function InputText({ label }) {
             placeholder:italic placeholder:text-sm placeholder:text-gray-light
             border-gray-light dark:bg-gray-dark dark:focus:bg-gray dark:focus:border-white-dark
             invalid:[&:not(:placeholder-shown):not(:focus)]:border-red valid:[&:not(:placeholder-shown)]:border-blue'
+        onInput={(evt) => onInput(evt.target)}
       />
     </div>
   );

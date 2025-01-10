@@ -1,5 +1,5 @@
 "use client";
-
+import React, { useMemo } from "react";
 import { createContext, useContext, useState } from "react";
 
 type Collapse = boolean;
@@ -11,15 +11,17 @@ interface CollapseContextType {
 const CollapseContext = createContext<CollapseContextType | null>(null);
 export const useCollapse = () => useContext(CollapseContext);
 
-import React from "react";
-
 function CollapseProvider({ children }) {
   const [collapse, setCollapse] = useState<Collapse>(false);
   const handleCollapse: HandleCollapse = () => {
     setCollapse((prevCollapse) => !prevCollapse);
   };
+  const value = useMemo(() => (
+    { collapse, handleCollapse }
+  ),[collapse])
+  
   return (
-    <CollapseContext.Provider value={{ collapse, handleCollapse }}>
+    <CollapseContext.Provider value={value}>
       {children}
     </CollapseContext.Provider>
   );

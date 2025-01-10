@@ -43,7 +43,7 @@ function SidebarModal({ isOpen, closeOpen }: SidebarModalProps) {
           </div>
         </div>
         <div className='flex gap-4 py-3'>
-          <SaveButton closeModal={closeOpen} />
+          <SaveButton closeModal={closeOpen}  />
           <CancelButton closeModal={closeOpen} />
         </div>
       </form>

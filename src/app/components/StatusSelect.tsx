@@ -37,7 +37,7 @@ function Select() {
           type='button'
           aria-expanded={isOpenList}
           className='border-2 rounded-xl p-2 text-md w-full text-left text-gray-light min-h-11 flex items-center gap-2
-              dark:border-gray-light dark:bg-gray-dark dark:focus:bg-gray dark:focus:border-white-dark'
+              dark:border-gray-light dark:bg-gray-dark dark:focus:bg-gray dark:focus:border-blue'
           onClick={() => setIsOpenList((state) => !state)}
         >
           {status ? (
@@ -49,7 +49,7 @@ function Select() {
         <ul
           role='listbox'
           className={cn(
-            "list-none p-1 rounded-xl dark:bg-black absolute z-10 w-full max-h-52 overflow-auto",
+            "list-none p-1 rounded-xl dark:bg-black absolute mt-2 z-10 w-full max-h-52 overflow-auto",
             [isOpenList ? "animate-options-open" : "hidden"]
           )}
         >

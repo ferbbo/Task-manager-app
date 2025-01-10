@@ -38,10 +38,30 @@ const TaskColumn = ({ board = "backlog", tasks }: TaskColumnProps) => {
         />
       ))}
       <button
-        className='rounded-2xl border-0 bg-blue p-4 text-white outline-none hover:bg-blue-dark transition-colors'
+        className='flex items-center justify-between text-lg font-medium rounded-2xl border-0 bg-blue-semilight p-4 py-3 text-blue-medium outline-none hover:opacity-95 transition-opacity'
         onClick={() => setOpenModal(true)}
       >
         Add new task card
+        <svg
+          width='24'
+          height='24'
+          viewBox='0 0 24 24'
+          fill='none'
+          xmlns='http://www.w3.org/2000/svg'
+        >
+          <path
+            d='M12 6L12 18'
+            stroke='#2A4DD0'
+            strokeWidth='2'
+            strokeLinecap='round'
+          />
+          <path
+            d='M18 12L6 12'
+            stroke='#2A4DD0'
+            strokeWidth='2'
+            strokeLinecap='round'
+          />
+        </svg>
       </button>
       {board === "backlog" && (
         <TaskModal

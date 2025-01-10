@@ -16,6 +16,8 @@ interface TaskModalProps {
   tags?: string[];
 }
 
+let value = "diego";
+
 function TaskModal({
   isOpen,
   closeOpen,
@@ -25,6 +27,9 @@ function TaskModal({
   status,
   tags,
 }: TaskModalProps) {
+  const handleInput = (target) => {
+    value = target.value;
+  };
   return (
     <Modal typeModal='task' isOpen={isOpen} closeOpen={closeOpen}>
       <form action='#' className='flex flex-col gap-4'>
@@ -37,7 +42,7 @@ function TaskModal({
             sizes='100%'
           ></Image>
         </figure>
-        <InputText label={name} />
+        <InputText label={name} value='diego' onInput={handleInput} />
         <StatusSelect />
         <TagsSelect />
       </form>

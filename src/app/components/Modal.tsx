@@ -5,7 +5,7 @@ import cn from "classnames";
 
 interface ModalProps {
   children: React.ReactNode;
-  typeModal: string;
+  typeModal: LabelModal;
   isOpen: boolean;
   closeOpen: () => void;
 }
@@ -70,7 +70,7 @@ function Modal({ children, typeModal, isOpen, closeOpen }: ModalProps) {
             {labelByType[typeModal]}
           </p>
           <button
-            className='hover:bg-blue-light-opacity dark:hover:bg-gray-light dark: p-2 transition-colors delay-75 border-0 rounded-full'
+            className='hover:bg-blue-light-opacity dark:hover:bg-gray-light dark: p-2 transition-colors delay-50 border-0 rounded-full'
             onClick={() => closeOpen()}
           >
             <svg

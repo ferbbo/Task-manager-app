@@ -1,6 +1,6 @@
 "use client";
 
-import { createContext, useEffect, useState, useContext } from "react";
+import { createContext, useEffect, useState, useContext, useMemo } from "react";
 
 type Theme = "light" | "dark" | null;
 type HandleTheme = (mode: Theme) => void;
@@ -42,9 +42,11 @@ export default function ThemeProvider({
       document.body.classList.remove("body-visible");
     };
   }, []);
-
+  const value = useMemo(() => ({
+    theme, handleTheme
+  }), [theme])
   return (
-    <ThemeContext.Provider value={{ theme, handleTheme }}>
+    <ThemeContext.Provider value={value}>
       {children}
     </ThemeContext.Provider>
   );
