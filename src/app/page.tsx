@@ -12,6 +12,9 @@ export default function Page() {
         ]}
         board='backlog'
       />
+      <TaskColumn board='inProgress' />
+      <TaskColumn board='inReview' />
+      <TaskColumn board='completed' />
     </ClientWrapper>
   );
 }

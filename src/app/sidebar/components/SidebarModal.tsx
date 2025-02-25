@@ -8,7 +8,7 @@ interface SidebarModalProps {
   isOpen: boolean;
   closeOpen: () => void;
 }
-const COUNT_ICONS = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13];
+const COUNT_ICONS = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12,13];
 
 function SidebarModal({ isOpen, closeOpen }: SidebarModalProps) {
   return (

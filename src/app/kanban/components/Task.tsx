@@ -14,7 +14,7 @@ const Task = ({ image, title, categories }: TaskProps) => {
   return (
     <article
       className={cn(
-        "flex flex-col gap-3 rounded-xl p-3 bg-white-dark text-black shadow-lg dark:bg-black dark:text-white-dark dark:shadow-lg"
+        "flex flex-col gap-3 rounded-xl p-3 bg-white text-black shadow-lg shadow-white-shadow dark:bg-black dark:text-white dark:shadow-lg"
       )}
     >
       <figure className='rounded-lg aspect-[16/5] overflow-hidden w-full relative object-cover'>
@@ -26,7 +26,7 @@ const Task = ({ image, title, categories }: TaskProps) => {
           sizes='100%'
         ></Image>
       </figure>
-      <p className='text-lg text-black dark:text-white-dark'>{title}</p>
+      <p className='text-lg text-black dark:text-white'>{title}</p>
       <div className='flex items-center gap-2'>
         {categories.map((el) => (
           <Tag key={el} category={el}></Tag>

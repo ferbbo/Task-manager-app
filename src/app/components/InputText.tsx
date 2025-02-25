@@ -26,7 +26,7 @@ function InputText({ label, value, onInput }: InputTextProps) {
         required
         pattern='[Aa-zZ0-9áéíóú.,\-\s]+'
         placeholder='e.g default board'
-        className='border-2 rounded-xl p-2 text-lg w-full
+        className='border-2 rounded-xl p-2 text-normal w-full
             placeholder:italic placeholder:text-sm placeholder:text-gray-light
             border-gray-light dark:bg-gray-dark dark:focus:bg-gray dark:focus:border-white-dark
             invalid:[&:not(:placeholder-shown):not(:focus)]:border-red valid:[&:not(:placeholder-shown)]:border-blue'

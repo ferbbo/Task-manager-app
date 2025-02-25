@@ -25,7 +25,7 @@ export default function Sidebar() {
   return (
     <aside
       className={cn(
-        "flex  flex-col max-w-[304px] pt-5 pb-3 px-3 overflow-hidden transition-all relative",
+        "flex  flex-col max-w-[304px] pt-5 pb-3 px-3 overflow-hidden transition-all relative bg-white dark:bg-black",
         [collapse ? "w-[68px]" : "w-[304px]"]
       )}
       aria-label='Sidebar Navigation'
@@ -33,7 +33,7 @@ export default function Sidebar() {
       <button
         className={cn(
           `w-[44px] absolute h-[44px] flex items-center justify-center rounded-full transition-colors 
-          bg-purple-light dark:bg-gray dark:hover:bg-gray-dark`
+          bg-blue-light-opacity dark:bg-gray dark:hover:bg-gray-dark`
         )}
         onClick={handleClose}
         aria-expanded={!collapse}
@@ -45,13 +45,13 @@ export default function Sidebar() {
             width='25'
             height='25'
             viewBox='0 0 24 24'
-            className='fill-black dark:fill-white-dark'
+            className='fill-black dark:fill-white'
           >
             <path
               d='M5 7h14M5 12h8M5 17h14'
               strokeWidth='2'
               strokeLinecap='round'
-              className='stroke-black dark:stroke-white-dark'
+              className='stroke-black dark:stroke-white'
             />
           </svg>
         ) : (
@@ -60,14 +60,14 @@ export default function Sidebar() {
             width='25'
             height='25'
             viewBox='0 0 24 24'
-            className='fill-black dark:fill-white-dark'
+            className='fill-black dark:fill-white'
           >
             <path
               d='M18 6L6 18M6 6L18 18'
               strokeWidth='2'
               strokeLinecap='round'
               strokeLinejoin='round'
-              className='stroke-black dark:stroke-white-dark'
+              className='stroke-black dark:stroke-white'
             />
           </svg>
         )}
@@ -78,7 +78,7 @@ export default function Sidebar() {
             <li
               key={el}
               className={cn(
-                "flex items-center gap-2 font-medium text-black dark:text-white-dark border-white-dark dark:border-black border-2  hover:border-blue",
+                "flex items-center gap-2 font-medium text-black dark:text-white border-white hover:border-blue dark:border-black border-2 dark:hover:border-blue",
                 [
                   collapse
                     ? "rounded-[50%] h-[48px] w-[44px] p-1"
@@ -88,9 +88,12 @@ export default function Sidebar() {
             >
               <IconSvg id={el} />
               <span
-                className={cn("text-nowrap overflow-hidden text-ellipsis text-lg font-bold", {
-                  hidden: collapse,
-                })}
+                className={cn(
+                  "text-nowrap overflow-hidden text-ellipsis text-lg font-bold",
+                  {
+                    hidden: collapse,
+                  }
+                )}
               >
                 Frontend Board
               </span>
@@ -99,7 +102,7 @@ export default function Sidebar() {
         </ul>
         <button
           className={cn(
-            "rounded-3xl flex items-center overflow-hidden gap-2 p-1 ms-1 text-lg font-medium border-white-dark hover:border-blue dark:text-white-dark  dark:border-black border dark:hover:border-blue-light",
+            "rounded-3xl flex items-center overflow-hidden gap-2 p-1 ms-1 text-lg font-medium border-white hover:border-blue dark:text-white  dark:border-black border dark:hover:border-blue-light",
             { "rounded-[50%] h-[34px] w-[34px]": collapse }
           )}
           onClick={handleBoardModal}

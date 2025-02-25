@@ -14,7 +14,7 @@ type Task = {
 
 interface TaskColumnProps {
   board: StatusLabel;
-  tasks: Array<Task>;
+  tasks?: Array<Task>;
 }
 
 const TaskColumn = ({ board = "backlog", tasks }: TaskColumnProps) => {
@@ -29,40 +29,44 @@ const TaskColumn = ({ board = "backlog", tasks }: TaskColumnProps) => {
       <header className='flex items-center gap-2 w-48'>
         <Status status={board} count={2} />
       </header>
-      {tasks.map((el) => (
-        <Task
-          key={el.id}
-          image='/images/placeholder.jpg'
-          title='Investigue Framer-Motion for animation'
-          categories={["technical", "design"]}
-        />
-      ))}
-      <button
-        className='flex items-center justify-between text-lg font-medium rounded-2xl border-0 bg-blue-semilight p-4 py-3 text-blue-medium outline-none hover:opacity-95 transition-opacity'
-        onClick={() => setOpenModal(true)}
-      >
-        Add new task card
-        <svg
-          width='24'
-          height='24'
-          viewBox='0 0 24 24'
-          fill='none'
-          xmlns='http://www.w3.org/2000/svg'
+      {tasks &&
+        tasks.map((el) => (
+          <Task
+            key={el.id}
+            image='/images/placeholder.jpg'
+            title='Investigue Framer-Motion for animation'
+            categories={["technical", "design"]}
+          />
+        ))}
+      {board === "backlog" && (
+        <button
+          className='flex items-center justify-between text-lg font-medium rounded-2xl border-0 bg-blue-semilight p-4 py-3 text-blue-medium outline-none hover:opacity-95 transition-opacity'
+          onClick={() => setOpenModal(true)}
         >
-          <path
-            d='M12 6L12 18'
-            stroke='#2A4DD0'
-            strokeWidth='2'
-            strokeLinecap='round'
-          />
-          <path
-            d='M18 12L6 12'
-            stroke='#2A4DD0'
-            strokeWidth='2'
-            strokeLinecap='round'
-          />
-        </svg>
-      </button>
+          Add new task card
+          <svg
+            width='24'
+            height='24'
+            viewBox='0 0 24 24'
+            fill='none'
+            xmlns='http://www.w3.org/2000/svg'
+          >
+            <path
+              d='M12 6L12 18'
+              stroke='#2A4DD0'
+              strokeWidth='2'
+              strokeLinecap='round'
+            />
+            <path
+              d='M18 12L6 12'
+              stroke='#2A4DD0'
+              strokeWidth='2'
+              strokeLinecap='round'
+            />
+          </svg>
+        </button>
+      )}
+
       {board === "backlog" && (
         <TaskModal
           isOpen={openModal}
